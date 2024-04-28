@@ -32,6 +32,9 @@ export const loginProvider = (provider) => async (dispatch) => {
     return dispatch(providerFail(error.response.data.message));
   }
 };
+
+
+
 export const providerRegister = (provider) => async (dispatch) => {
   try {
     dispatch(providerRequest());
@@ -67,7 +70,7 @@ export const getAllProviders = () => async (dispatch) => {
     dispatch(providerRequest());
     const providerData = await axios({
       method: "GET",
-      url: "https://tiffin-managment.onrender.com/api/v1/provider",
+      url: "http://localhost:4000/api/v1/provider",
     });
     return dispatch(allProvidersSuccess(providerData.data));
   } catch (error) {
@@ -79,7 +82,7 @@ export const getProviderById = (id) => async (dispatch) => {
     dispatch(providerRequest());
     const provider = await axios({
       method: "GET",
-      url: `https://tiffin-managment.onrender.com/api/v1/provider/${id}`,
+      url: `http://localhost:4000/api/v1/provider/${id}`,
     });
     dispatch(singleProviderSuccess(provider.data));
   } catch (error) {
@@ -91,7 +94,7 @@ export const getProviderDetails = () => async (dispatch) => {
     dispatch(providerRequest());
     const providerData = await axios({
       method: "GET",
-      url: "https://tiffin-managment.onrender.com/api/v1/provider/me",
+      url: "http://localhost:4000/api/v1/provider/me",
     });
     return dispatch(providerSuccess(providerData.data.provider));
   } catch (error) {
