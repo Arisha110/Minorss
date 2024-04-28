@@ -3,7 +3,9 @@ const userModel = require('../models/user');
 const providerModel = require('../models/provider');
 const generateToken = require('../utils/generateToken');
 const uploads = require('../utils/cloudinaryUpload')
+
 exports.registerUser = async(req,res) =>{
+    console.log("xfcfhcjgkigk")
     try {
         const {name,email,password,phoneNumber} = req.body;
         const userExists = await userModel.findOne({email})
@@ -22,6 +24,7 @@ exports.registerUser = async(req,res) =>{
         return res.status(500).json({message:error})
     }
 }
+
 exports.loginUser = async(req,res) =>{
     try {
         const {email, password} = req.body;
@@ -36,6 +39,7 @@ exports.loginUser = async(req,res) =>{
         return res.status(500).json({message:error.message})
     }
 }
+
 exports.getUserDetails = async(req,res) =>{
     try {
       if(!req.user)

@@ -46,7 +46,7 @@ providerSchema.pre("save", async function(next){
     }
     provider.password = await bcrypt.hash(provider.password,10)
 })
-providerSchema.methods.generateJwtToken = function(){
-    return jwt.sign({id:this._id},process.env.SECRET_KEY,{expiresIn:'5d'});
-}
+// providerSchema.methods.generateJwtToken = function(){
+//     return jwt.sign({id:this._id},process.env.SECRET_KEY,{expiresIn:'5d'});
+// }
 module.exports = mongoose.model('providers',providerSchema)

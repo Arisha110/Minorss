@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema({
     profilePic:{type:String}
 
 })
+
 userSchema.pre("save", async function(next){
     const user = this
     if(!user.isModified("password")){
@@ -36,7 +37,30 @@ userSchema.pre("save", async function(next){
     }
     user.password = await bcrypt.hash(user.password,10)
 })
-userSchema.methods.generateJwtToken = function(){
-    return jwt.sign({id:this._id},process.env.SECRET_KEY,{expiresIn:'5d'});
-}
+
+
+
+// userSchema.methods.generateJwtToken = function (type) {
+//     // let expiresIn = '';
+//     // let secretKey = '';
+
+//     // if (type === 'access') {
+//     //     expiresIn = '15m';
+//     //     secretKey = process.env.ACCESS_SECRET_KEY; 
+//     // } else if (type === 'refresh') {
+//     //     expiresIn = '7d';
+//     //     secretKey = process.env.REFRESH_SECRET_KEY; 
+//     //     throw new Error('Invalid token type');
+//     // }
+   
+  
+
+//     // if (!secretKey) {
+//     //     throw new Error('Secret key not found');
+//     // }
+
+//     // return jwt.sign(, secretKey, { expiresIn });
+//     return {accessToken,refreshToken};
+// }
+
 module.exports = mongoose.model('users',userSchema)

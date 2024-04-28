@@ -13,10 +13,10 @@ export const login = (user) => async (dispatch) => {
     });
     axios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${userData.data.userToken}`;
+    ] = `Bearer ${userData.data.accessToken}`;
     localStorage.setItem(
       "userToken",
-      JSON.stringify({ userToken: userData.data.userToken })
+      JSON.stringify({ userToken: userData.data.accessToken })
     );
     return dispatch(userSuccess(userData.data));
   } catch (error) {
